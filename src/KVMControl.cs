@@ -900,7 +900,7 @@ namespace MeshCentralRouter
         private void KVMControl_KeyUp(object sender, KeyEventArgs e)
         {
             if (!isHookPriority)
-            {
+            {            
                 SendKey(e, 1);
                 e.Handled = true;
             }
@@ -910,20 +910,41 @@ namespace MeshCentralRouter
         {
             const int WM_KEYDOWN = 0x100;
             const int WM_SYSKEYDOWN = 0x104;
+            const byte SHIFT_KEY_CODE = 16; // Keys.Shift
 
-            // Tab keys
-            if (msg.Msg == WM_KEYDOWN && msg.WParam.ToInt32() == 9)
+            if (msg.Msg != WM_KEYDOWN && msg.Msg != WM_SYSKEYDOWN)
             {
-                SendKey((byte)msg.WParam.ToInt32(), 0);
+                return false;
+            }
+            
+            int keyCode = msg.WParam.ToInt32();
+            bool isShiftPressed = (keyData & Keys.Shift) == Keys.Shift;
+            
+            HashSet<int> handledKeys = new HashSet<int> 
+            { 
+                33,  // PageUp
+                34,  // PageDown
+                35,  // End
+                36,  // Home
+                37,  // Left Arrow
+                38,  // Up Arrow
+                39,  // Right Arrow
+                40,  // Down Arrow
+            };
+            
+            if (handledKeys.Contains(keyCode) || keyCode == 9) // Tab key
+            {
+                if (isShiftPressed && keyCode != 9)
+                {
+                    SendKey(SHIFT_KEY_CODE, 4);  // Shift down for text selection
+                    SendKey((byte)keyCode, 0);
+                    SendKey(SHIFT_KEY_CODE, 3);  // Shift up
+                }else{
+                    SendKey((byte)keyCode, 0);
+                }                
                 return true;
             }
 
-            // Handle arrow keys
-            if (((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) && msg.WParam.ToInt32() >= 37 && msg.WParam.ToInt32() <= 40)
-            {
-                SendKey((byte)msg.WParam.ToInt32(), 0);
-                return true;
-            }
 
             return false;
         }

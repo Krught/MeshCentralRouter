@@ -89,7 +89,7 @@ namespace MeshCentralRouter
             try { FrameRate = int.Parse(Settings.GetRegValue("kvmFrameRate", "100")); } catch (Exception) { }
             kvmControl.SetCompressionParams(CompressionLevel, ScalingLevel, FrameRate);
             kvmControl.SwamMouseButtons = Settings.GetRegValue("kvmSwamMouseButtons", "0").Equals("1");
-            kvmControl.RemoteKeyboardMap = Settings.GetRegValue("kvmSwamMouseButtons", "0").Equals("1");
+            kvmControl.RemoteKeyboardMap = Settings.GetRegValue("kvmRemoteKeyboardMap", "0").Equals("1");
             kvmControl.AutoSendClipboard = Settings.GetRegValue("kvmAutoClipboard", "0").Equals("1");
             kvmControl.AutoReconnect = Settings.GetRegValue("kvmAutoReconnect", "0").Equals("1");
         }
