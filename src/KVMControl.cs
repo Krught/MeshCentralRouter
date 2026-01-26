@@ -42,6 +42,7 @@ namespace MeshCentralRouter
         private bool swamMouseButtons = false;
         private bool remoteKeyboardMap = false;
         private bool autoSendClipboard = false;
+        private bool lockOnDisconnect = false;
         public bool AutoReconnect = false;
         private double scalefactor = 1;
         public List<ushort> displays = new List<ushort>();
@@ -174,6 +175,7 @@ namespace MeshCentralRouter
         public int ScalingLevel { get { return scalinglevel; } set { scalinglevel = value; SendCompressionLevel(); } }
         public int FrameRate { get { return frameRate; } set { frameRate = value; SendCompressionLevel(); } }
         public bool SwamMouseButtons { get { return swamMouseButtons; } set { swamMouseButtons = value; } }
+        public bool LockOnDisconnect { get { return lockOnDisconnect; } set { lockOnDisconnect = value; } }
         public bool RemoteKeyboardMap { get { return remoteKeyboardMap; } set { remoteKeyboardMap = value; } }
         public bool AutoSendClipboard { get { return autoSendClipboard; } set { autoSendClipboard = value; } }
 
@@ -826,6 +828,11 @@ namespace MeshCentralRouter
             bw.Write(IPAddress.HostToNetworkOrder((short)KvmCommands.CtrlAltDel));
             bw.Write(IPAddress.HostToNetworkOrder((short)4));
             Send(bw);
+        }
+
+        public void SendLock()
+        {
+            Send("{\"ctrlChannel\":\"102938\",\"type\":\"lock\"}");
         }
 
         public void GetDisplayNumbers()

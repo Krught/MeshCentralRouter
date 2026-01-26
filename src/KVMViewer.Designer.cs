@@ -65,6 +65,7 @@ namespace MeshCentralRouter
             this.settingsButton = new System.Windows.Forms.Button();
             this.zoomButton = new System.Windows.Forms.Button();
             this.cadButton = new System.Windows.Forms.Button();
+            this.lockButton = new System.Windows.Forms.Button();
             this.connectButton = new System.Windows.Forms.Button();
             this.consoleMessage = new System.Windows.Forms.Label();
             this.consoleTimer = new System.Windows.Forms.Timer(this.components);
@@ -116,6 +117,7 @@ namespace MeshCentralRouter
             this.topPanel.Controls.Add(this.settingsButton);
             this.topPanel.Controls.Add(this.zoomButton);
             this.topPanel.Controls.Add(this.cadButton);
+            this.topPanel.Controls.Add(this.lockButton);
             this.topPanel.Controls.Add(this.connectButton);
             resources.ApplyResources(this.topPanel, "topPanel");
             this.topPanel.Name = "topPanel";
@@ -231,6 +233,14 @@ namespace MeshCentralRouter
             this.cadButton.UseVisualStyleBackColor = true;
             this.cadButton.Click += new System.EventHandler(this.sendCtrlAltDelToolStripMenuItem_Click);
             // 
+            // lockButton
+            // 
+            resources.ApplyResources(this.lockButton, "lockButton");
+            this.lockButton.Name = "lockButton";
+            this.lockButton.TabStop = false;
+            this.lockButton.UseVisualStyleBackColor = true;
+            this.lockButton.Click += new System.EventHandler(this.lockButton_Click);
+            // 
             // connectButton
             // 
             this.connectButton.ContextMenuStrip = this.consentContextMenuStrip;
@@ -321,6 +331,7 @@ namespace MeshCentralRouter
         private ImageList displaySelectorImageList;
         private Button openRemoteFilesButton;
         private Button chatButton;
+        private Button lockButton;
     }
 }
 

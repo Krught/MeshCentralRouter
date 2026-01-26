@@ -468,6 +468,36 @@
   <data name="&gt;&gt;zoomButton.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+    <data name="lockButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lockButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lockButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 3</value>
+  </data>
+  <data name="lockButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 26</value>
+  </data>
+  <data name="lockButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lockButton.Text" xml:space="preserve">
+    <value>Lock</value>
+  </data>
+  <data name="&gt;&gt;lockButton.Name" xml:space="preserve">
+    <value>lockButton</value>
+  </data>
+  <data name="&gt;&gt;lockButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lockButton.Parent" xml:space="preserve">
+    <value>topPanel</value>
+  </data>
+  <data name="&gt;&gt;lockButton.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
   <data name="cadButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -496,7 +526,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;cadButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="connectButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -508,7 +538,7 @@
     <value>89, 26</value>
   </data>
   <data name="connectButton.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>11</value>
   </data>
   <data name="connectButton.Text" xml:space="preserve">
     <value>Connect</value>

@@ -526,7 +526,16 @@ namespace MeshCentralRouter.Properties {
                 return ResourceManager.GetString("Local", resourceCulture);
             }
         }
-        
+
+
+        /// <summary>
+        ///   Looks up a localized string similar to Lock.
+        /// </summary>
+        internal static string Lock {
+            get {
+                return ResourceManager.GetString("Lock", resourceCulture);
+            }
+        }
         /// <summary>
         ///   Looks up a localized string similar to Local - {0}.
         /// </summary>
@@ -842,6 +851,15 @@ namespace MeshCentralRouter.Properties {
         internal static string SendCtrlAltDelToRemoteDevice {
             get {
                 return ResourceManager.GetString("SendCtrlAltDelToRemoteDevice", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Lock remote desktop.
+        /// </summary>
+        internal static string LockRemoteDesktop {
+            get {
+                return ResourceManager.GetString("LockRemoteDesktop", resourceCulture);
             }
         }
         

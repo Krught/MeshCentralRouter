@@ -35,6 +35,7 @@
             this.autoSendClipboardCheckBox = new System.Windows.Forms.CheckBox();
             this.remoteKeyboardMapCheckBox = new System.Windows.Forms.CheckBox();
             this.swapMouseButtonsCheckBox = new System.Windows.Forms.CheckBox();
+            this.lockOnDisconnectCheckBox = new System.Windows.Forms.CheckBox();
             this.frameRateComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.scalingComboBox = new System.Windows.Forms.ComboBox();
@@ -66,6 +67,7 @@
             // groupBox1
             // 
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.lockOnDisconnectCheckBox);
             this.groupBox1.Controls.Add(this.autoReconnectCheckBox);
             this.groupBox1.Controls.Add(this.autoSendClipboardCheckBox);
             this.groupBox1.Controls.Add(this.remoteKeyboardMapCheckBox);
@@ -151,6 +153,12 @@
             this.autoReconnectCheckBox.Name = "autoReconnectCheckBox";
             this.autoReconnectCheckBox.UseVisualStyleBackColor = true;
             // 
+            // lockOnDisconnectCheckBox
+            // 
+            resources.ApplyResources(this.lockOnDisconnectCheckBox, "lockOnDisconnectCheckBox");
+            this.lockOnDisconnectCheckBox.Name = "lockOnDisconnectCheckBox";
+            this.lockOnDisconnectCheckBox.UseVisualStyleBackColor = true;
+            // 
             // KVMSettingsForm
             // 
             this.AcceptButton = this.okButton;
@@ -191,5 +199,6 @@
         private System.Windows.Forms.CheckBox remoteKeyboardMapCheckBox;
         private System.Windows.Forms.CheckBox autoSendClipboardCheckBox;
         private System.Windows.Forms.CheckBox autoReconnectCheckBox;
+        private System.Windows.Forms.CheckBox lockOnDisconnectCheckBox;
     }
 }

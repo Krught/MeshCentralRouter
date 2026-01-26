@@ -74,6 +74,7 @@ namespace MeshCentralRouter
 
             mainToolTip.SetToolTip(connectButton, Translate.T(Properties.Resources.ToggleRemoteDesktopConnection, lang));
             mainToolTip.SetToolTip(cadButton, Translate.T(Properties.Resources.SendCtrlAltDelToRemoteDevice, lang));
+            mainToolTip.SetToolTip(lockButton, Translate.T(Properties.Resources.LockRemoteDesktop, lang));
             mainToolTip.SetToolTip(settingsButton, Translate.T(Properties.Resources.ChangeRemoteDesktopSettings, lang));
             mainToolTip.SetToolTip(clipOutboundButton, Translate.T(Properties.Resources.PushLocaClipboardToRemoteDevice, lang));
             mainToolTip.SetToolTip(clipInboundButton, Translate.T(Properties.Resources.PullClipboardFromRemoteDevice, lang));
@@ -92,6 +93,8 @@ namespace MeshCentralRouter
             kvmControl.RemoteKeyboardMap = Settings.GetRegValue("kvmRemoteKeyboardMap", "0").Equals("1");
             kvmControl.AutoSendClipboard = Settings.GetRegValue("kvmAutoClipboard", "0").Equals("1");
             kvmControl.AutoReconnect = Settings.GetRegValue("kvmAutoReconnect", "0").Equals("1");
+            kvmControl.LockOnDisconnect = Settings.GetRegValue("kvmLockOnDisconnect", "0").Equals("1");
+            AdjustButtonPositions();
         }
 
         private void KvmControl_ScreenAreaUpdated(Bitmap desktop, Rectangle r)
@@ -337,6 +340,7 @@ namespace MeshCentralRouter
         {
             if (wc != null)
             {
+                if (kvmControl.LockOnDisconnect) { kvmControl.SendLock(); }
                 // Disconnect
                 if (splitMode) { splitButton_Click(this, null); }
                 splitButton.Visible = false;
@@ -374,18 +378,21 @@ namespace MeshCentralRouter
                     kvmControl.screenWidth = 0;
                     kvmControl.screenHeight = 0;
                     connectButton.Text = Translate.T(Properties.Resources.Connect, lang);
+                    lockButton.Text = Translate.T(Properties.Resources.Lock, lang);
                     break;
                 case 1: // Connecting
                     mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Connecting, lang);
                     extraButtonsPanel.Visible = false;
                     kvmControl.Visible = false;
                     connectButton.Text = Translate.T(Properties.Resources.Disconnect, lang);
+                    lockButton.Text = Translate.T(Properties.Resources.Lock, lang);
                     break;
                 case 2: // Setup
                     mainToolStripStatusLabel.Text = "Setup...";
                     extraButtonsPanel.Visible = false;
                     kvmControl.Visible = false;
                     connectButton.Text = Translate.T(Properties.Resources.Disconnect, lang);
+                    lockButton.Text = Translate.T(Properties.Resources.Lock, lang);
                     break;
                 case 3: // Connected
                     string label = Translate.T(Properties.Resources.Connected, lang);
@@ -394,12 +401,15 @@ namespace MeshCentralRouter
                     label += ".";
                     mainToolStripStatusLabel.Text = label;
                     connectButton.Text = Translate.T(Properties.Resources.Disconnect, lang);
+                    lockButton.Text = Translate.T(Properties.Resources.Lock, lang);
                     kvmControl.SendCompressionLevel();
                     break;
             }
 
             cadButton.Enabled = (state == 3);
+            lockButton.Enabled = (state == 3);
             openRemoteFilesButton.Enabled = (state == 3 && (node.agentcaps & 4) != 0);
+            AdjustButtonPositions();
             if ((kvmControl.AutoSendClipboard) && ((server.features2 & 0x1000) == 0)) // 0x1000 Clipboard Set
             {
                 clipInboundButton.Visible = false;
@@ -419,10 +429,38 @@ namespace MeshCentralRouter
             UpdateStatus();
         }
 
+        private void AdjustButtonPositions()
+        {
+            // If Lock on Disconnect is enabled, hide lock button and use original positions
+            // If disabled, show lock button and shift other buttons right
+            bool showLockButton = !kvmControl.LockOnDisconnect;
+            
+            lockButton.Visible = showLockButton;
+            
+            if (showLockButton)
+            {
+                // Lock button visible - shift buttons right
+                lockButton.Location = new Point(193, 3);
+                openRemoteFilesButton.Location = new Point(288, 3);
+                chatButton.Location = new Point(383, 3);
+                settingsButton.Location = new Point(478, 3);
+                extraButtonsPanel.Location = new Point(573, 2);
+            }
+            else
+            {
+                // Lock button hidden - use original positions
+                openRemoteFilesButton.Location = new Point(192, 3);
+                chatButton.Location = new Point(286, 3);
+                settingsButton.Location = new Point(380, 3);
+                extraButtonsPanel.Location = new Point(474, 2);
+            }
+        }
+
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (wc != null)
             {
+                if (kvmControl.LockOnDisconnect) { kvmControl.SendLock(); }
                 // Disconnect
                 state = 0;
                 wc.Dispose();
@@ -464,12 +502,14 @@ namespace MeshCentralRouter
                 form.RemoteKeyboardMap = kvmControl.RemoteKeyboardMap;
                 form.AutoSendClipboard = kvmControl.AutoSendClipboard;
                 form.AutoReconnect = kvmControl.AutoReconnect;
+                form.LockOnDisconnect = kvmControl.LockOnDisconnect;
                 if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
                     kvmControl.SetCompressionParams(form.Compression, form.Scaling, form.FrameRate);
                     kvmControl.SwamMouseButtons = form.SwamMouseButtons;
                     kvmControl.RemoteKeyboardMap = form.RemoteKeyboardMap;
                     kvmControl.AutoReconnect = form.AutoReconnect;
+                    kvmControl.LockOnDisconnect = form.LockOnDisconnect;
 
                     Settings.SetRegValue("kvmCompression", kvmControl.CompressionLevel.ToString());
                     Settings.SetRegValue("kvmScaling", kvmControl.ScalingLevel.ToString());
@@ -477,6 +517,7 @@ namespace MeshCentralRouter
                     Settings.SetRegValue("kvmSwamMouseButtons", kvmControl.SwamMouseButtons ? "1" : "0");
                     Settings.SetRegValue("kvmRemoteKeyboardMap", kvmControl.RemoteKeyboardMap ? "1" : "0");
                     Settings.SetRegValue("kvmAutoReconnect", kvmControl.AutoReconnect ? "1" : "0");
+                    Settings.SetRegValue("kvmLockOnDisconnect", kvmControl.LockOnDisconnect ? "1" : "0");
 
                     if (kvmControl.AutoSendClipboard != form.AutoSendClipboard)
                     {
@@ -485,6 +526,7 @@ namespace MeshCentralRouter
                         if (kvmControl.AutoSendClipboard == true) { Parent_ClipboardChanged(); }
                     }
                     UpdateStatus();
+                    AdjustButtonPositions();
                 }
             }
         }
@@ -497,6 +539,10 @@ namespace MeshCentralRouter
         private void sendCtrlAltDelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (kvmControl != null) kvmControl.SendCtrlAltDel();
+        }
+        private void lockButton_Click(object sender, EventArgs e)
+        {
+            if (kvmControl != null) kvmControl.SendLock();
         }
 
         private void debugButton_Click(object sender, EventArgs e)

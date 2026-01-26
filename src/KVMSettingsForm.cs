@@ -143,6 +143,12 @@ namespace MeshCentralRouter
             set { autoReconnectCheckBox.Checked = value; }
         }
 
+        public bool LockOnDisconnect
+        {
+            get { return lockOnDisconnectCheckBox.Checked; }
+            set { lockOnDisconnectCheckBox.Checked = value; }
+        }
+
         private void okButton_Click(object sender, EventArgs e)
         {
             DialogResult = System.Windows.Forms.DialogResult.OK;

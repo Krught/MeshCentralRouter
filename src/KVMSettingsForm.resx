@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 276</value>
+    <value>312, 299</value>
   </data>
   <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -151,7 +151,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 276</value>
+    <value>231, 299</value>
   </data>
   <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -176,6 +176,36 @@
   </data>
   <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="lockOnDisconnectCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lockOnDisconnectCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lockOnDisconnectCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>128, 197</value>
+  </data>
+  <data name="lockOnDisconnectCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 17</value>
+  </data>
+  <data name="lockOnDisconnectCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="lockOnDisconnectCheckBox.Text" xml:space="preserve">
+    <value>Lock on Disconnect</value>
+  </data>
+  <data name="&gt;&gt;lockOnDisconnectCheckBox.Name" xml:space="preserve">
+    <value>lockOnDisconnectCheckBox</value>
+  </data>
+  <data name="&gt;&gt;lockOnDisconnectCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lockOnDisconnectCheckBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;lockOnDisconnectCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="autoReconnectCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -205,7 +235,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;autoReconnectCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="autoSendClipboardCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -235,7 +265,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;autoSendClipboardCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="remoteKeyboardMapCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -265,7 +295,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;remoteKeyboardMapCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="swapMouseButtonsCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -292,7 +322,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;swapMouseButtonsCheckBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="frameRateComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -316,7 +346,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;frameRateComboBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -343,7 +373,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="scalingComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -367,7 +397,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;scalingComboBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -394,7 +424,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="qualityComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -421,7 +451,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;qualityComboBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -448,13 +478,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 68</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>375, 202</value>
+    <value>375, 225</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -532,7 +562,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>399, 311</value>
+    <value>399, 334</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

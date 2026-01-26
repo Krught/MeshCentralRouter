@@ -181,6 +181,9 @@
   <data name="SendCtrlAltDelToRemoteDevice" xml:space="preserve">
     <value>Send Ctrl-Alt-Del to remote device</value>
   </data>
+  <data name="LockRemoteDesktop" xml:space="preserve">
+    <value>Lock remote desktop</value>
+  </data>
   <data name="Fast" xml:space="preserve">
     <value>Fast</value>
   </data>
@@ -261,6 +264,9 @@
   </data>
   <data name="Local" xml:space="preserve">
     <value>Local</value>
+  </data>
+  <data name="Lock" xml:space="preserve">
+    <value>Lock</value>
   </data>
   <data name="Join" xml:space="preserve">
     <value>Join</value>
